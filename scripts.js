@@ -1,6 +1,20 @@
 /**********************************************
-  * FC Barcelona Player Comparison App
- * FC Barcelona Players – Using players.json from GitHub.
+ * FC Barcelona Player Comparison App
+ *
+ * This app loads player data from a JSON file hosted on GitHub 
+ * (players.json) and displays the performance statistics of FC 
+ * Barcelona players. It allows users to compare players based on 
+ * various metrics such as goals, assists, match appearances, and 
+ * an overall performance rating. Additionally, the app marks which 
+ * players are products of La Masia by checking their names against 
+ * a predefined list.
+ *
+ * Features:
+ * - Retrieves and displays detailed player stats.
+ * - Compares players using both quantitative (goals, assists, etc.)
+ *   and qualitative data (man of the match performances).
+ * - Highlights La Masia players.
+ *
  **********************************************/
 
 /* Global Variables */
