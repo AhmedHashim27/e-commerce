@@ -1,31 +1,157 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
-    <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FC Barcelona Players</title>
+  <meta name="description" content="A catalog showcasing FC Barcelona's players" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="scripts.js"></script>
+  <style>
+    /* Additional styles to ensure coach card aligns left */
+    #coach-container {
+      justify-content: flex-start;
+    }
+    
+    /* Enhanced footer styling */
+    .footer {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #004d98;
+      color: white;
+      margin-top: 20px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    
+    .footer button {
+      background-color: #a50044;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .footer button:hover {
+      background-color: #c90052;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with logo and title -->
+  <header class="main-header">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png" alt="FC Barcelona Logo" class="logo">
+    <h1 class="title">FC BARCELONA</h1>
+  </header>
 
-  <body>
-    <header class="main-header">
-      <h1 class="title">LA TV Shows</h1>
-    </header>
-    <div id="card-container"></div>
-    <div class="card" style="display: none">
-      <div class="card-content">
-        <h2>TV Show Title</h2>
-        <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
-        </ul>
+  <!-- Position Category Navigation -->
+  <nav class="position-nav">
+    <ul>
+      <li><a href="#" class="position-link active" data-position="All">ALL PLAYERS</a></li>
+      <li><a href="#" class="position-link" data-position="Goalkeeper">GOALKEEPERS</a></li>
+      <li><a href="#" class="position-link" data-position="Defender">DEFENDERS</a></li>
+      <li><a href="#" class="position-link" data-position="Midfielder">MIDFIELDERS</a></li>
+      <li><a href="#" class="position-link" data-position="Forward">FORWARDS</a></li>
+    </ul>
+  </nav>
+
+  <!-- Search bar -->
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search players by name...">
+    <button id="clear-search">Clear</button>
+  </div>
+
+  <!-- Current Category Header -->
+  <div class="category-header">
+    <h2 id="current-category">ALL PLAYERS</h2>
+  </div>
+
+  <!-- Controls for Sorting and Filtering Favorites -->
+  <div class="controls">
+    <div class="sort">
+      <button onclick="sortBy('name')">Sort by Name</button>
+      <button onclick="sortBy('rating')">Sort by Rating</button>
+      <button onclick="sortBy('matchesPlayed')">Sort by Appearances</button>
+    </div>
+    <!-- Favorites controls (buttons for filtering) -->
+    <div class="favorites-controls">
+      <button id="show-favorite-team">Show My Favorite Team</button>
+      <button id="la-masia-filter">La Masia</button>
+      <button id="clear-filters">Clear Filters</button>
+      <button id="clear-favorites">Clear Favorites</button>
+    </div>
+  </div>
+
+  <!-- Card container -->
+  <div id="card-container" class="card-container"></div>
+
+  <!-- Coach Card Container -->
+  <div class="category-header">
+    <h2>COACHING STAFF</h2>
+  </div>
+  <div id="coach-container" class="card-container">
+    <div class="player-card coach-card">
+      <div class="jersey-number">HC</div>
+      <img src="https://raw.githubusercontent.com/AhmedHashim27/e-commerce/refs/heads/main/images/00-Hansi_Flick-M.webp" alt="Hansi Flick Photo" class="player-img">
+      <div class="player-info">
+        <div class="player-name">Hansi Flick</div>
+        <div class="player-position">Head Coach</div>
+      </div>
+      <div class="player-stats">
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-value">49</div>
+            <div class="stat-label">MATCHES</div>
+            <div class="stat-season">2024/2025</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">37</div>
+            <div class="stat-label">WINS</div>
+            <div class="stat-season">2024/2025</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">75.5%</div>
+            <div class="stat-label">WIN RATE</div>
+            <div class="stat-season">2024/2025</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer">
-      <button onclick="quoteAlert();">Get A Quote!</button>
-      <button onclick="removeLastCard();">Remove A Card!</button>
+  </div>
+
+  <!-- Compare Players Modal -->
+  <div id="compare-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Compare Players</h2>
+      <div id="comparison-container" class="comparison-container"></div>
+      <div class="modal-footer">
+        <button id="close-comparison">Close Comparison</button>
+      </div>
     </div>
-  </body>
+  </div>
+
+  <!-- Improved Footer -->
+  <footer class="footer">
+    <div class="footer-info">
+      <p>FC Barcelona Player Catalog 2024/2025</p>
+    </div>
+  </footer>  
+</body>
 </html>

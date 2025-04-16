@@ -1,70 +1,552 @@
-html,
-body {
+/* Reset defaults and basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Header with FC Barcelona colors */
+.main-header {
+  background: linear-gradient(90deg, #a50044, #1a4bac);
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  height: 60px;
+  margin-right: 15px;
+}
+
+.title {
+  font-size: 2.5em;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Position Navigation */
+.position-nav {
+  background-color: #fff;
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.position-nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.main-header {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding-bottom: 10px;
-}
-
-.title {
-  text-align: center;
+.position-nav li {
   margin: 0;
-  font-size: 8em;
-  font-family: "Helvetica";
-  font-weight: normal;
-  color: white;
 }
 
-#card-container {
+.position-nav a {
+  display: block;
+  text-decoration: none;
+  color: #666;
+  font-weight: 600;
+  font-size: 0.9em;
+  padding: 15px 25px;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.position-nav a:hover,
+.position-nav a.active {
+  color: #a50044;
+  border-bottom: 3px solid #a50044;
+}
+
+/* Search bar styling */
+.search-container {
   display: flex;
   justify-content: center;
-  margin: 20px;
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.card {
+#search-input {
   width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 5px;
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
 }
 
-.card-content {
-  padding: 20px;
-  font-family: "Verdana";
-  color: #777;
+#search-input:focus {
+  border-color: #a50044;
+  outline: none;
 }
 
-.card-content h2 {
-  margin-top: 0;
-  font-size: 20px;
+#clear-search {
+  background-color: #1a4bac;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-left: 10px;
 }
 
-.card img {
-  width: 100%;
-  height: auto;
+#clear-search:hover {
+  background-color: #a50044;
 }
 
-.footer {
+/* Category Header */
+.category-header {
+  text-align: center;
+  padding: 40px 0 30px;
+}
+
+.category-header h2 {
+  font-size: 2.8em;
+  color: #333;
+  font-weight: 700;
+}
+
+/* Controls styling */
+.controls {
   display: flex;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 0 30px;
 }
 
-button {
-  text-align: center;
-  background-color: #666;
-  border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 40px;
-  border-radius: 10px;
+.controls button {
+  background-color: #1a4bac;
   color: white;
-  font-size: 22px;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
   cursor: pointer;
-  margin: 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: #a50044;
+}
+
+.favorites-controls {
+  display: flex;
+  gap: 10px;
+}
+
+/* Card container layout */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin: 30px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* Card base style and hover effect */
+.player-card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(204, 201, 201, 0.718);
+  transition: all 0.3s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Player image settings */
+.player-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Jersey number watermark */
+.jersey-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10em;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+  pointer-events: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Player info section */
+.player-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: #fff;
+  z-index: 2;
+}
+
+.player-name {
+  font-size: 1.6em;
+  font-weight: 700;
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.player-position {
+  font-size: 1em;
+  opacity: 0.9;
+  margin-bottom: 5px;
+}
+
+/* Stats overlay (appears on hover) */
+.player-stats {
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.6),
+    rgba(10, 10, 10, 0.4)
+  );
+  color: #b0b0b0;
+  transition: all 0.3s ease;
+  z-index: 3;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.player-card:hover .player-stats {
+  bottom: 0;
+}
+
+/* Stats container styling */
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.stat-label {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #ccc;
+}
+
+.stat-season {
+  font-size: 0.7em;
+  color: #999;
+  margin-top: 3px;
+}
+
+/* Favorite Star */
+.favorite-star {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 1.8em;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  z-index: 5;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.favorite-star:hover {
+  transform: scale(1.2);
+}
+
+.favorite-star.active {
+  color: #fdc52c;
+}
+
+/* Compare Button */
+.compare-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(26, 75, 172, 0.8);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.compare-button:hover {
+  background-color: #a50044;
+}
+
+.compare-button.selected {
+  background-color: #a50044;
+}
+
+/* La Masia badge (for academy players) */
+.la-masia-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
+  background-image: url('https://i.imgur.com/CsRTxkZ.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 2;
+  opacity: 0.9;
+}
+
+/* Footer styling */
+.footer {
+  background-color: #a50044;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.footer button {
+  background-color: #1a4bac;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 4px;
+  font-size: 1.1em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.footer button:hover {
+  background-color: #fdc52c;
+  color: #004d98;
+}
+
+/* Compare Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 30px;
+  width: 80%;
+  max-width: 900px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #999;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: #a50044;
+}
+
+.modal h2 {
+  color: #1a4bac;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+
+.modal-footer {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.modal-footer button {
+  background-color: #1a4bac;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.modal-footer button:hover {
+  background-color: #a50044;
+}
+
+/* Comparison container styling */
+.comparison-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.comparison-player {
+  flex: 1;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.comparison-name {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #1a4bac;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.comparison-position {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.comparison-stats {
+  margin-top: 20px;
+}
+
+.comparison-stat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.comparison-stat:last-child {
+  border-bottom: none;
+}
+
+.stat-better {
+  color: #008800;
+  font-weight: bold;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .position-nav ul {
+    flex-wrap: wrap;
+  }
+  
+  .position-nav li {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .controls button {
+    margin: 5px 0;
+    width: 200px;
+  }
+  
+  .comparison-container {
+    flex-direction: column;
+  }
+  
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8em;
+  }
+  
+  .player-card {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .category-header h2 {
+    font-size: 2em;
+  }
+  
+  #search-input {
+    width: 80%;
+  }
 }
